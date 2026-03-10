@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prägen — Marketing Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAFAC8;
+    --pink: #FF2D9B;
+    --black: #111111;
+    --white: #ffffff;
+    --gray: #555555;
+    --lightgray: #f0f0e8;
+    --warn: #FFB800;
+    --green: #00C96B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--black);
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 4px solid var(--black);
+    box-shadow: 10px 10px 0 var(--pink);
+  }
+
+  /* Header */
+  .header {
+    background: var(--black);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--pink);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--pink);
+    letter-spacing: 3px;
+  }
+
+  .header-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .header-meta {
+    font-size: 10px;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 3px solid var(--black);
+    background: var(--white);
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 14px 22px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    border-right: 2px solid var(--black);
+    white-space: nowrap;
+    transition: background 0.15s;
+    user-select: none;
+  }
+
+  .tab:hover { background: var(--cream); }
+  .tab.active {
+    background: var(--pink);
+    color: var(--white);
+  }
+
+  /* Panels */
+  .panel { display: none; padding: 32px; }
+  .panel.active { display: block; }
+
+  /* Section headers */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+
+  .section-sub {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 500;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* Cards */
+  .card {
+    border: 2.5px solid var(--black);
+    background: var(--white);
+    padding: 18px 20px;
+    box-shadow: 4px 4px 0 var(--black);
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1.5px solid var(--black);
+  }
+
+  .badge-pink { background: var(--pink); color: var(--white); border-color: var(--pink); }
+  .badge-black { background: var(--black); color: var(--cream); }
+  .badge-warn { background: var(--warn); color: var(--black); }
+  .badge-green { background: var(--green); color: var(--white); border-color: var(--green); }
+  .badge-cream { background: var(--cream); color: var(--black); }
+
+  .card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--gray);
+  }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 0; }
+
+  .tl-phase {
+    margin-bottom: 24px;
+  }
+
+  .tl-phase-header {
+    background: var(--black);
+    color: var(--cream);
+    padding: 10px 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border: 2px solid var(--black);
+  }
+
+  .tl-phase-header span {
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--pink);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .tl-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .tl-item {
+    border: 2px solid var(--black);
+    background: var(--white);
+    padding: 12px 14px;
+    position: relative;
+  }
+
+  .tl-item-label {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: var(--pink);
+  }
+
+  .tl-item-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.4;
+  }
+
+  .tl-item-note {
+    font-size: 10px;
+    color: var(--gray);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* Channel rows */
+  .channel-row {
+    border: 2.5px solid var(--black);
+    background: var(--white);
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 180px 1fr 120px 100px;
+    align-items: stretch;
+    box-shadow: 3px 3px 0 var(--black);
+  }
+
+  .channel-name {
+    padding: 14px 16px;
+    border-right: 2px solid var(--black);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .channel-detail {
+    padding: 14px 16px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--gray);
+    border-right: 2px solid var(--black);
+  }
+
+  .channel-timing {
+    padding: 14px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--black);
+    border-right: 2px solid var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .channel-priority {
+    padding: 14px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Social table */
+  .social-table { width: 100%; border-collapse: collapse; border: 2.5px solid var(--black); }
+  .social-table th {
+    background: var(--black);
+    color: var(--cream);
+    padding: 10px 14px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: left;
+    border-right: 1px solid #333;
+  }
+  .social-table td {
+    padding: 12px 14px;
+    font-size: 11px;
+    border-bottom: 1.5px solid #ddd;
+    border-right: 1.5px solid #ddd;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .social-table tr:nth-child(even) td { background: var(--lightgray); }
+  .social-table tr:last-child td { border-bottom: none; }
+
+  /* Creatives */
+  .creative-item {
+    border: 2.5px solid var(--black);
+    background: var(--white);
+    padding: 16px 18px;
+    box-shadow: 3px 3px 0 var(--black);
+  }
+
+  .creative-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .creative-list {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .creative-list li {
+    font-size: 11px;
+    color: var(--gray);
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .creative-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pink);
+    font-weight: 700;
+  }
+
+  .creative-list li:last-child { border-bottom: none; }
+
+  /* Missing decisions */
+  .decision-item {
+    border: 2.5px solid var(--black);
+    background: var(--white);
+    padding: 18px 20px;
+    box-shadow: 4px 4px 0 var(--warn);
+    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: 32px 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .decision-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--pink);
+    line-height: 1;
+  }
+
+  .decision-question {
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: var(--black);
+  }
+
+  .decision-why {
+    font-size: 11px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .decision-action {
+    font-size: 11px;
+    color: var(--black);
+    line-height: 1.5;
+    background: var(--cream);
+    padding: 10px 12px;
+    border: 1.5px solid var(--black);
+  }
+
+  .decision-action strong {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    color: var(--pink);
+  }
+
+  /* KPI strip */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: 2.5px solid var(--black);
+    margin-bottom: 24px;
+    box-shadow: 4px 4px 0 var(--black);
+  }
+
+  .kpi-item {
+    padding: 14px 16px;
+    border-right: 2px solid var(--black);
+    background: var(--white);
+  }
+
+  .kpi-item:last-child { border-right: none; }
+
+  .kpi-label {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+
+  .kpi-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--pink);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .kpi-note {
+    font-size: 10px;
+    color: var(--gray);
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 2px solid var(--black);
+    margin: 24px 0;
+  }
+
+  .inline-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1.5px solid currentColor;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  .tag-now { color: var(--pink); border-color: var(--pink); }
+  .tag-soon { color: var(--warn); border-color: var(--warn); }
+  .tag-later { color: var(--gray); border-color: var(--gray); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 3px solid var(--pink);
+  }
+
+  .footer-text {
+    font-size: 10px;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--pink);
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 700px) {
+    .grid-2, .grid-3, .tl-items { grid-template-columns: 1fr; }
+    .channel-row { grid-template-columns: 1fr; }
+    .kpi-strip { grid-template-columns: 1fr 1fr; }
+    .decision-item { grid-template-columns: 32px 1fr; }
+    .decision-action { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">PRÄGEN</div>
+      <div class="header-title">Marketing Roadmap — 0 to 12 Months</div>
+    </div>
+    <div class="header-meta">CMO Blueprint · March 2026</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('strategy')">01 Strategy</div>
+    <div class="tab" onclick="showTab('timeline')">02 GTM Timeline</div>
+    <div class="tab" onclick="showTab('channels')">03 Channels</div>
+    <div class="tab" onclick="showTab('social')">04 Social Playbook</div>
+    <div class="tab" onclick="showTab('creatives')">05 Creatives Needed</div>
+    <div class="tab" onclick="showTab('decisions')">06 Open Decisions ⚠️</div>
+  </div>
+
+  <!-- TAB 1: STRATEGY -->
+  <div class="panel active" id="tab-strategy">
+    <div class="section-title">The Foundation</div>
+    <div class="section-sub">Marketing is not ads. Ads are the last step. The sequence is: positioning → message → channel → creative → paid. Skip any step and you burn money.</div>
+
+    <div class="kpi-strip">
+      <div class="kpi-item">
+        <div class="kpi-label">Target D7 Retention</div>
+        <div class="kpi-value">>30%</div>
+        <div class="kpi-note">Industry benchmark for language apps</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-label">Target D30 Retention</div>
+        <div class="kpi-value">>15%</div>
+        <div class="kpi-note">Duolingo sits at ~17%</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-label">Paid Ad Budget</div>
+        <div class="kpi-value">€500</div>
+        <div class="kpi-note">Month 3+ only, Meta first</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-label">Launch Window</div>
+        <div class="kpi-value">10d</div>
+        <div class="kpi-note">Waitlist starts NOW</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-label">First Customer Goal</div>
+        <div class="kpi-value">100</div>
+        <div class="kpi-note">Real users, not friends</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-black">Positioning (done)</span> Your North Star</div>
+          <p><em>"For English-speaking German learners at A2–C1 level — whether moving, working, studying, or just living life in German — Prägen is the one app that covers the full vocabulary loop."</em></p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-pink">One-Liner (done)</span> What you say everywhere</div>
+          <p><em>"The only German vocabulary app that takes you from lookup to fluency."</em></p>
+        </div>
+        <div class="card">
+          <div class="card-title">ICP — Who you're selling to</div>
+          <p>A2–C1 German learner, 22–40, relocating or planning to relocate to a German-speaking country for work or study. Uses English as primary learning language. High intent. Will pay.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-title">The Funnel — 3 Jobs</div>
+          <p style="margin-bottom:10px"><strong>1. Get Found</strong> — Awareness. Reddit, SEO, social, Product Hunt.</p>
+          <p style="margin-bottom:10px"><strong>2. Get Tried</strong> — Activation. Freemium hook, time-to-value under 60 seconds, onboarding emails.</p>
+          <p><strong>3. Get Kept</strong> — Retention. Streak mechanic, weekly email, re-engagement triggers, milestone moments. <em>Retention is the growth engine — not ads.</em></p>
+        </div>
+        <div class="card">
+          <div class="card-title">Priority Order</div>
+          <p>Month 1–2: Organic only. Prove retention before paying for acquisition.<br><br>
+          Month 3+: Add paid once D7 retention >20%.<br><br>
+          Month 6+: Scale what's working. Kill what isn't. Don't add channels — go deeper.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: GTM TIMELINE -->
+  <div class="panel" id="tab-timeline">
+    <div class="section-title">GTM Timeline</div>
+    <div class="section-sub">Phases are sequential. Don't move to paid until organic shows retention signal. Every phase has a clear goal.</div>
+
+    <div class="timeline">
+
+      <div class="tl-phase">
+        <div class="tl-phase-header">
+          Phase 0 — Pre-Launch <span>NOW → Launch Day (10 days)</span>
+        </div>
+        <div class="tl-items">
+          <div class="tl-item">
+            <div class="tl-item-label">Waitlist</div>
+            <div class="tl-item-text">Set up "early access" email capture on landing page today. Target: 50–100 emails before launch.</div>
+            <div class="tl-item-note">Tool: Mailchimp / Loops / Brevo free tier</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Reddit Seeding</div>
+            <div class="tl-item-text">Post in r/LearnGerman, r/germany, expat FB groups. Genuine participation, soft mention of early access.</div>
+            <div class="tl-item-note">DO NOT post a link directly. Start conversations first.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Product Hunt Prep</div>
+            <div class="tl-item-text">Create PH account, write product description, prepare screenshots, identify 10 people to vote on launch day.</div>
+            <div class="tl-item-note">Schedule PH launch for Week 2</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Creator Outreach</div>
+            <div class="tl-item-text">Identify 10 micro-influencers in German learning / expat niche. DM with free lifetime access offer. No money needed.</div>
+            <div class="tl-item-note">Target: 5–10k followers, high engagement</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Onboarding Emails</div>
+            <div class="tl-item-text">Write 3-email onboarding sequence: Day 1 (first lookup), Day 3 (save a word), Day 7 (take a quiz).</div>
+            <div class="tl-item-note">Each email = one action only</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Social Accounts</div>
+            <div class="tl-item-text">Set up Instagram + TikTok. Post 3 pieces of content before launch so the account isn't empty.</div>
+            <div class="tl-item-note">First post: "something is coming" teaser</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-phase">
+        <div class="tl-phase-header">
+          Phase 1 — Launch & Organic <span>Month 1–2</span>
+        </div>
+        <div class="tl-items">
+          <div class="tl-item">
+            <div class="tl-item-label">Launch Day</div>
+            <div class="tl-item-text">Email waitlist. Post on Product Hunt. Share in Reddit + expat communities. Post on all socials. Ask your 10 PH allies to vote.</div>
+            <div class="tl-item-note">Do this on a Tuesday–Thursday, 12am SF time</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Reddit (ongoing)</div>
+            <div class="tl-item-text">3–4 posts/week across r/LearnGerman, r/germany, r/AskGermany. Answer questions. Build credibility. Mention Prägen only when directly relevant.</div>
+            <div class="tl-item-note">10:1 ratio — 10 helpful posts per 1 promotion</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Social Content</div>
+            <div class="tl-item-text">Instagram + TikTok: 5x/week. "German word of the day" format. See Social Playbook tab for full breakdown.</div>
+            <div class="tl-item-note">Consistency > virality at this stage</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Partnerships</div>
+            <div class="tl-item-text">Reach out to: Goethe Institut Vienna, DeutschAkademie, DAAD, expat Facebook groups admins. Offer free access for their members.</div>
+            <div class="tl-item-note">Goal: 1–2 partnerships by end of month 2</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Weekly Email</div>
+            <div class="tl-item-text">Send every Tuesday. Word of the week + one tip. Keep under 150 words. Personal tone, not corporate.</div>
+            <div class="tl-item-note">Open rate target: >35%</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Measure</div>
+            <div class="tl-item-text">Track: sign-ups/day, D7 retention, words saved per user, email open rates. Don't move to paid until D7 > 20%.</div>
+            <div class="tl-item-note">If D7 < 15%, fix product before scaling</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-phase">
+        <div class="tl-phase-header">
+          Phase 2 — First Paid Test <span>Month 3–4</span>
+        </div>
+        <div class="tl-items">
+          <div class="tl-item">
+            <div class="tl-item-label">Meta Ads (€500)</div>
+            <div class="tl-item-text">One campaign. One objective: sign-ups. Two ad creatives max. €15–20/day. Target: expats, German learners, Duolingo interest, age 25–38.</div>
+            <div class="tl-item-note">Expect 200–300 clicks. 15–30 sign-ups at 10% CVR</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Freemium Conversion</div>
+            <div class="tl-item-text">Trigger upgrade email when user hits 10 saved words or completes 3 quizzes. This is the conversion moment — make it count.</div>
+            <div class="tl-item-note">A/B test subject lines on this email</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">SEO — Start</div>
+            <div class="tl-item-text">Publish 2 articles/week. Priority: "Prägen vs Duolingo," "best German vocab app," German word deep-dives (Fernweh, Weltschmerz), expat guides.</div>
+            <div class="tl-item-note">SEO takes 3–6 months to show results</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Creator Push</div>
+            <div class="tl-item-text">Follow up with creators from Phase 0. If any posted, amplify. Send product updates. Ask for second mention or collaboration.</div>
+            <div class="tl-item-note">One authentic creator post > €500 in ads</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Re-engagement</div>
+            <div class="tl-item-text">Automate: if no login in 5 days → "your Wortschatz misses you" email. If no login in 14 days → re-engagement with new feature highlight.</div>
+            <div class="tl-item-note">Target: recover 20% of lapsed users</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Review & Pivot</div>
+            <div class="tl-item-text">End of month 4: audit every channel. Cut the bottom 2. Double down on the top 1. Don't spread thin.</div>
+            <div class="tl-item-note">Data decides, not gut feeling</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-phase">
+        <div class="tl-phase-header">
+          Phase 3 — Scale What Works <span>Month 5–8</span>
+        </div>
+        <div class="tl-items">
+          <div class="tl-item">
+            <div class="tl-item-label">SEO Compound</div>
+            <div class="tl-item-text">By month 5 you'll see early rankings. Double content output if SEO is converting. Prioritize CEFR guides and comparison pages.</div>
+            <div class="tl-item-note">Target: 500 organic visits/month by month 6</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Referral Mechanic</div>
+            <div class="tl-item-text">If D30 retention > 15%, launch a referral program. Reward: 1 month free per successful referral. Language learners refer in communities — exploit this.</div>
+            <div class="tl-item-note">Duolingo grew 30% via referral in early years</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">YouTube</div>
+            <div class="tl-item-text">"German word explained" format. 3–5 min videos. Embed Prägen lookup in every video. Long-form SEO + brand building.</div>
+            <div class="tl-item-note">Start only if TikTok/Instagram is working</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">B2B Angle</div>
+            <div class="tl-item-text">Approach corporate relocation HR teams and language schools. Offer team licenses. High LTV, low churn. Even 3 corporate accounts changes the business.</div>
+            <div class="tl-item-note">Target: companies sending staff to DACH region</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Mobile Launch</div>
+            <div class="tl-item-text">iOS + Android go live. Immediately invest in ASO: keyword research, screenshot design, optimized description. App Store organic is high-ROI.</div>
+            <div class="tl-item-note">ASO research should start NOW, not at launch</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Paid Scale</div>
+            <div class="tl-item-text">If Meta CAC < LTV, reinvest profits into ads. Expand to Google Search ("German vocabulary app" intent keywords). Never outspend LTV.</div>
+            <div class="tl-item-note">Only scale paid if organic + retention is healthy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-phase">
+        <div class="tl-phase-header">
+          Phase 4 — Growth Engine <span>Month 9–12</span>
+        </div>
+        <div class="tl-items">
+          <div class="tl-item">
+            <div class="tl-item-label">Community</div>
+            <div class="tl-item-text">Build a Prägen community (Discord or Slack) for serious learners. User-generated content, accountability partners, German learning challenges.</div>
+            <div class="tl-item-note">Community = lowest CAC, highest LTV</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">Streak & Gamification</div>
+            <div class="tl-item-text">If not already live, add streak mechanic. This single feature moves D30 retention by 20–40% in language apps. Non-negotiable by month 9.</div>
+            <div class="tl-item-note">Proven by Duolingo, Anki, Drops</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-item-label">PR</div>
+            <div class="tl-item-text">Pitch to expat media (Toytown Germany, Expatica, The Local DE). One feature story = thousands of targeted visitors. Write your own press kit now.</div>
+            <div class="tl-item-note">Angle: "Built by an expat, for expats"</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB 3: CHANNELS -->
+  <div class="panel" id="tab-channels">
+    <div class="section-title">Channel Strategy</div>
+    <div class="section-sub">Every channel is backed by evidence from comparable edtech and language apps. Start organic. Add paid only after retention is proven.</div>
+
+    <div style="margin-bottom:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <span class="badge badge-pink">High Priority</span>
+      <span class="badge badge-warn">Medium Priority</span>
+      <span class="badge" style="background:#eee; color:#111; border-color:#ccc">Low / Later</span>
+    </div>
+
+    <div class="channel-row" style="background:var(--black); color:var(--cream);">
+      <div class="channel-name" style="color:var(--cream); border-color:#333">Channel</div>
+      <div class="channel-detail" style="color:#aaa; border-color:#333; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:1px">What to do & why it works</div>
+      <div class="channel-timing" style="color:var(--cream); border-color:#333">Start</div>
+      <div class="channel-priority" style="color:var(--cream)">Priority</div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Reddit<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">r/LearnGerman · r/germany</div></div>
+      <div class="channel-detail">180k+ members of your exact ICP. Highest intent of any channel. Contribute genuinely (10:1 ratio). Vocabeo and LanguageTransfer both grew primarily here. Zero cost, high trust, compounds over time.</div>
+      <div class="channel-timing">NOW</div>
+      <div class="channel-priority"><span class="badge badge-pink">High</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Instagram Reels + TikTok<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Short video, daily</div></div>
+      <div class="channel-detail">"German word of the day" format. Low production, highly repeatable, shareable. Drops app grew significantly via this exact format. Builds brand recognition before paid. Reels get organic reach even with 0 followers.</div>
+      <div class="channel-timing">NOW</div>
+      <div class="channel-priority"><span class="badge badge-pink">High</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Product Hunt<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">One-time launch event</div></div>
+      <div class="channel-detail">Early adopter audience. Strong backlink. Credibility signal ("Featured on PH"). Plan your launch with 10+ allies ready to vote. Top 10 on launch day = 300–800 targeted visitors. Free.</div>
+      <div class="channel-timing">Week 2</div>
+      <div class="channel-priority"><span class="badge badge-pink">High</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Email / Lifecycle<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Onboarding + weekly</div></div>
+      <div class="channel-detail">Onboarding sequence (D1, D3, D7) drives activation. Weekly word email drives retention. Re-engagement at D5 inactivity recovers churned users. Highest ROI channel in edtech — own the relationship.</div>
+      <div class="channel-timing">Launch day</div>
+      <div class="channel-priority"><span class="badge badge-pink">High</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Creator / Micro-influencer<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Gifted / free access</div></div>
+      <div class="channel-detail">German teachers on Instagram, "moving to Germany" TikTok creators, expat YouTubers. 1 authentic mention from a 15k-follower creator outperforms €500 in ads. Cost: free lifetime account. Babbel and Preply run this from day one.</div>
+      <div class="channel-timing">Pre-launch</div>
+      <div class="channel-priority"><span class="badge badge-pink">High</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Expat Partnerships<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Goethe, DAAD, schools</div></div>
+      <div class="channel-detail">Goethe Institut, DeutschAkademie, DAAD all have direct access to your ICP. Facebook expat groups (50k–200k members) welcome tool recommendations. Offer free access. High trust, zero cost, high conversion.</div>
+      <div class="channel-timing">Month 1</div>
+      <div class="channel-priority"><span class="badge badge-warn">Medium</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">Meta Ads (Instagram/FB)<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">€500 test budget</div></div>
+      <div class="channel-detail">Run ONLY after D7 retention >20%. One campaign, two creatives, €15–20/day. Target: 25–38, interests = Germany relocation, German language, Duolingo. Meta has the most precise targeting for this ICP at this budget.</div>
+      <div class="channel-timing">Month 3</div>
+      <div class="channel-priority"><span class="badge badge-warn">Medium</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">SEO / Content<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Blog, 2x/week</div></div>
+      <div class="channel-detail">Comparison pages rank fast ("Prägen vs Duolingo"). German word deep-dives (Fernweh, Schadenfreude) demonstrate product AND attract learners. Expat how-to guides = ICP content. Compounds over 6–12 months.</div>
+      <div class="channel-timing">Month 3</div>
+      <div class="channel-priority"><span class="badge badge-warn">Medium</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">YouTube<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Long-form, 1x/week</div></div>
+      <div class="channel-detail">"German word explained" format, 3–5 min. Embed Prägen lookup in every video. SEO + brand. Start only if short video (TikTok/Reels) is already working — don't split attention too early.</div>
+      <div class="channel-timing">Month 6</div>
+      <div class="channel-priority"><span class="badge" style="background:#eee; color:#555; border-color:#ccc">Later</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">App Store (ASO)<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">iOS + Android</div></div>
+      <div class="channel-detail">Highest organic ROI in mobile edtech. Research keywords NOW (before launch). Optimize screenshots, description, title for "German vocabulary app," "learn German words," CEFR-related terms. Execute on mobile launch day.</div>
+      <div class="channel-timing">Prep now, launch later</div>
+      <div class="channel-priority"><span class="badge badge-warn">Medium</span></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="channel-name">B2B / Corporate<div style="font-size:9px; font-weight:500; color:#888; margin-top:2px">Team licenses</div></div>
+      <div class="channel-detail">Companies relocating staff to DACH region, language schools, corporate HR teams. Small volume, high LTV, low churn. Even 3 accounts changes the business. Approach via LinkedIn outreach to relocation/HR contacts.</div>
+      <div class="channel-timing">Month 6</div>
+      <div class="channel-priority"><span class="badge" style="background:#eee; color:#555; border-color:#ccc">Later</span></div>
+    </div>
+
+  </div>
+
+  <!-- TAB 4: SOCIAL PLAYBOOK -->
+  <div class="panel" id="tab-social">
+    <div class="section-title">Social Media Playbook</div>
+    <div class="section-sub">Consistency beats virality at this stage. One format, done well, every day beats five formats done poorly. Start with Instagram + TikTok only.</div>
+
+    <table class="social-table" style="margin-bottom:24px">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Format</th>
+          <th>Frequency</th>
+          <th>Content Type</th>
+          <th>Goal</th>
+          <th>Start</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TikTok</strong></td>
+          <td>Short video, 15–45s</td>
+          <td><strong>5x / week</strong></td>
+          <td>German word of the day, false friends, "words English doesn't have"</td>
+          <td>Reach + virality</td>
+          <td>Now</td>
+        </tr>
+        <tr>
+          <td><strong>Instagram Reels</strong></td>
+          <td>Same video as TikTok, repurposed</td>
+          <td><strong>5x / week</strong></td>
+          <td>Same as TikTok — repurpose, don't recreate</td>
+          <td>Reach + sign-ups</td>
+          <td>Now</td>
+        </tr>
+        <tr>
+          <td><strong>Instagram Feed</strong></td>
+          <td>Static post / carousel</td>
+          <td><strong>3x / week</strong></td>
+          <td>Word of the week, tips, "did you know" carousels, product features</td>
+          <td>Brand + SEO</td>
+          <td>Now</td>
+        </tr>
+        <tr>
+          <td><strong>Instagram Stories</strong></td>
+          <td>Poll, quiz, behind the scenes</td>
+          <td><strong>Daily</strong></td>
+          <td>Word polls ("which is correct?"), product screenshots, user milestones</td>
+          <td>Engagement + retention</td>
+          <td>Now</td>
+        </tr>
+        <tr>
+          <td><strong>Reddit</strong></td>
+          <td>Text post / comment</td>
+          <td><strong>3–4x / week</strong></td>
+          <td>Answer questions about German learning. 10:1 participation-to-promo ratio.</td>
+          <td>Trust + acquisition</td>
+          <td>Now</td>
+        </tr>
+        <tr>
+          <td><strong>YouTube</strong></td>
+          <td>Long-form, 3–5 min</td>
+          <td><strong>1x / week</strong></td>
+          <td>"German word explained in depth," expat vocabulary guides</td>
+          <td>SEO + brand</td>
+          <td>Month 6</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="font-size:20px; margin-bottom:12px">Content Pillars — What to Post</div>
+    <div class="grid-3" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-title"><span class="badge badge-pink">Pillar 1</span></div>
+        <div class="card-title" style="margin-top:8px">Word Education (40%)</div>
+        <p>"German word of the day." Words English doesn't have (Fernweh, Schadenfreude, Weltschmerz). False friends (Gift = poison, not gift). Common mistakes. CEFR word reveals.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="badge badge-black">Pillar 2</span></div>
+        <div class="card-title" style="margin-top:8px">Expat Life (30%)</div>
+        <p>"Words you need your first week in Germany." German bureaucracy vocab. German workplace phrases. "What I wish I knew before moving to Vienna/Berlin/Munich." Relatable, shareable, ICP-specific.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="badge badge-cream">Pillar 3</span></div>
+        <div class="card-title" style="margin-top:8px">Product / Social Proof (30%)</div>
+        <p>App features in action (screen recordings). User milestones ("just saved my 100th word"). Weekly email previews. "How I use Prägen" format. Behind the scenes — building in public builds trust.</p>
+      </div>
+    </div>
+
+    <div class="card" style="border-color: var(--pink); box-shadow: 4px 4px 0 var(--pink)">
+      <div class="card-title">Content Batching Strategy — Save Time</div>
+      <p><strong>Once a week (2 hours):</strong> Record 5–7 short videos in one session. Same background, same format. Repurpose each video for both TikTok and Reels. Create 3 static posts from screenshots. Write Reddit responses in advance for common questions.<br><br>
+      <strong>Tool stack (free to start):</strong> CapCut for video editing, Canva for static posts, Buffer or Later for scheduling, Notion for content calendar.</p>
+    </div>
+  </div>
+
+  <!-- TAB 5: CREATIVES NEEDED -->
+  <div class="panel" id="tab-creatives">
+    <div class="section-title">Creatives Needed</div>
+    <div class="section-sub">Every channel requires specific creative assets. This is what needs to be built before and after launch — prioritized by urgency.</div>
+
+    <div class="grid-2">
+
+      <div>
+        <div class="creative-item" style="box-shadow: 3px 3px 0 var(--pink); margin-bottom:14px">
+          <div class="creative-title"><span class="badge badge-pink">Pre-launch · NOW</span></div>
+          <div class="creative-title" style="margin-top:8px">Landing Page Assets</div>
+          <ul class="creative-list">
+            <li>Hero headline + subheadline (use your one-liner)</li>
+            <li>3–5 product screenshots showing lookup, Wortschatz, quiz</li>
+            <li>Feature icons or illustrations (lookup, articles, quiz, tips)</li>
+            <li>Social proof section (even 3 beta user quotes)</li>
+            <li>"Early access" email capture CTA</li>
+            <li>One demo GIF or short screen recording of word lookup</li>
+          </ul>
+        </div>
+
+        <div class="creative-item" style="box-shadow: 3px 3px 0 var(--pink); margin-bottom:14px">
+          <div class="creative-title"><span class="badge badge-pink">Pre-launch · NOW</span></div>
+          <div class="creative-title" style="margin-top:8px">Email Templates</div>
+          <ul class="creative-list">
+            <li>Waitlist confirmation email (plain text, personal tone)</li>
+            <li>Launch announcement email to waitlist</li>
+            <li>Onboarding Day 1: "Look up your first word"</li>
+            <li>Onboarding Day 3: "Save it to your Wortschatz"</li>
+            <li>Onboarding Day 7: "Time for your first quiz"</li>
+            <li>Weekly email template (word + tip format)</li>
+          </ul>
+        </div>
+
+        <div class="creative-item" style="box-shadow: 3px 3px 0 var(--warn); margin-bottom:14px">
+          <div class="creative-title"><span class="badge badge-warn">Launch Week</span></div>
+          <div class="creative-title" style="margin-top:8px">Product Hunt Assets</div>
+          <ul class="creative-list">
+            <li>PH thumbnail (240×240px) — logo on cream background</li>
+            <li>PH gallery images (1270×760px) — 5 key screens</li>
+            <li>60-word product description (plain English, no jargon)</li>
+            <li>Tagline (use your one-liner)</li>
+            <li>Maker intro post (personal, 3–4 sentences, your story)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="creative-item" style="box-shadow: 3px 3px 0 var(--pink); margin-bottom:14px">
+          <div class="creative-title"><span class="badge badge-pink">Pre-launch · NOW</span></div>
+          <div class="creative-title" style="margin-top:8px">Social Content (First 2 Weeks)</div>
+          <ul class="creative-list">
+            <li>1 teaser Reel/TikTok: "something is coming for German learners"</li>
+            <li>5 "German word of the day" video templates (CapCut)</li>
+            <li>3 static posts: feature highlights with brutalist design</li>
+            <li>Launch day announcement post (Reel + static)</li>
+            <li>Instagram Story poll template: "Do you know this word?"</li>
+            <li>Instagram Story quiz template: "German or not German?"</li>
+          </ul>
+        </div>
+
+        <div class="creative-item" style="box-shadow: 3px 3px 0 var(--warn); margin-bottom:14px">
+          <div class="creative-title"><span class="badge badge-warn">Month 3</span></div>
+          <div class="creative-title" style="margin-top:8px">Paid Ad Creatives (Meta)</div>
+          <ul class="creative-list">
+            <li>Ad A: iPhone mockup version (built — see ad files)</li>
+            <li>Ad B: Illustration / chaos-to-clarity version (built)</li>
+            <li>Video ad: 15s screen recording of word lookup flow</li>
+            <li>Carousel ad: 5 slides, one feature per slide</li>
+            <li>A/B test: "tab chaos" hook vs "German word" hook</li>
+            <li>All ads need "German 🇩🇪" visible within first 2 seconds</li>
+          </ul>
+        </div>
+
+        <div class="creative-item" style="box-shadow: 3px 3px 0 var(--warn); margin-bottom:14px">
+          <div class="creative-title"><span class="badge badge-warn">Month 3</span></div>
+          <div class="creative-title" style="margin-top:8px">SEO Content</div>
+          <ul class="creative-list">
+            <li>"Prägen vs Duolingo" comparison page</li>
+            <li>"Best German vocabulary apps 2026" roundup</li>
+            <li>5 German word deep-dive articles (Fernweh, Weltschmerz, etc.)</li>
+            <li>"How to go from A2 to B1 German vocabulary" guide</li>
+            <li>"Words you need your first month in Germany" listicle</li>
+            <li>Press kit: 1-page PDF, logo pack, founder bio, screenshots</li>
+          </ul>
+        </div>
+
+        <div class="creative-item" style="box-shadow: 3px 3px 0 #ccc; margin-bottom:14px">
+          <div class="creative-title"><span class="badge" style="background:#eee; color:#555; border-color:#ccc">Month 5+</span></div>
+          <div class="creative-title" style="margin-top:8px">App Store (ASO)</div>
+          <ul class="creative-list">
+            <li>App icon variants (test 2)</li>
+            <li>iOS screenshots: 6.7" and 6.1" sizes, 5 screens</li>
+            <li>Android screenshots: same 5 screens, Play Store sizes</li>
+            <li>App preview video: 30s demo of full word lookup flow</li>
+            <li>App description copy (keyword-optimized, 4000 chars)</li>
+            <li>Short description (80 chars): one-liner version</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: OPEN DECISIONS -->
+  <div class="panel" id="tab-decisions">
+    <div class="section-title">Open Decisions ⚠️</div>
+    <div class="section-sub">These are unresolved questions that will block execution. Each one needs a decision before the relevant phase begins. Don't ignore them.</div>
+
+    <div class="decision-item">
+      <div class="decision-num">01</div>
+      <div>
+        <div class="decision-question">What is your pricing model?</div>
+        <div class="decision-why">You have a freemium structure but no defined price point. Without pricing, you can't calculate CAC, LTV, or payback period. The €500 ad budget is meaningless without knowing what a converted user is worth. This also determines your conversion email strategy.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Before Month 3</strong>
+        Research competitors: Vocabeo = €7/month, Drops = ~€8/month, Babbel = ~€10/month. Pick a price. Test it. Don't undercharge — language learners with relocation intent pay for quality.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">02</div>
+      <div>
+        <div class="decision-question">What is the freemium conversion trigger?</div>
+        <div class="decision-why">At what point does a free user hit a wall that prompts upgrade? "Save more than 10 words"? "More than 3 quizzes per week"? "Access to full article translation"? Without a defined trigger, free users stay free forever and your conversion rate is 0.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Before Launch</strong>
+        Define the one moment where free users want more. Build the upgrade prompt around that moment. Test two triggers: word save limit vs quiz limit. Track which drives more upgrades.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">03</div>
+      <div>
+        <div class="decision-question">Mobile app launch — when, and does it launch with the web app?</div>
+        <div class="decision-why">Founder is considering including mobile apps in the 10-day launch. This is a risk if apps aren't fully tested. A broken mobile app on launch day kills reviews and trust. But delaying too long means missing the launch momentum window.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Now</strong>
+        If apps aren't fully tested: don't include in launch. Add "iOS + Android coming soon" on landing page. Launch mobile 4–6 weeks after web with a separate launch event. Two launch moments = more PR.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">04</div>
+      <div>
+        <div class="decision-question">Who is running social content — you or someone else?</div>
+        <div class="decision-why">5 videos/week + 3 static posts + daily stories requires 6–8 hours/week minimum. If you're also building the product and running the business, this will break. No plan for who executes = content dies by week 3.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Before Launch</strong>
+        Option A: Do it yourself with a strict 2-hour batching session per week. Option B: Hire a part-time content creator (student, freelancer). Option C: Start with just 3x/week instead of 5x — consistency over volume. Pick one.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">05</div>
+      <div>
+        <div class="decision-question">Do you have an email tool set up?</div>
+        <div class="decision-why">Onboarding sequences, weekly emails, re-engagement flows, and lifecycle campaigns all require an email service provider (ESP). Without one, you have no retention infrastructure. This needs to be live on launch day.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · NOW</strong>
+        Brevo (free up to 300 emails/day), Loops (built for SaaS), or Mailchimp (free up to 500 contacts). Set it up this week. Build the 3-email onboarding sequence before launch. Non-negotiable.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">06</div>
+      <div>
+        <div class="decision-question">Is there a streak or gamification mechanic in the product?</div>
+        <div class="decision-why">Streak mechanics improve D30 retention by 20–40% in language apps. This is the single highest-leverage retention feature. Duolingo built a $4B company on streaks. Without it, churn will be high regardless of how good the content is.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Month 1–2</strong>
+        Minimum viable streak: "Days in a row" counter on dashboard. Show it prominently. Send a "don't break your streak" push notification after D3 inactivity. This can be built in a day.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">07</div>
+      <div>
+        <div class="decision-question">Is there analytics / tracking set up?</div>
+        <div class="decision-why">Without analytics you're flying blind. You can't optimize what you can't measure. D7 retention, words saved per user, funnel drop-off — all critical decisions depend on this data. Running ads without conversion tracking wastes the entire €500 budget.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Before Launch</strong>
+        Google Analytics 4 (free) for web traffic. Mixpanel or Amplitude free tier for product events (word saved, quiz started, article read). Meta Pixel before running any ads. Set up all three this week.
+      </div>
+    </div>
+
+    <div class="decision-item">
+      <div class="decision-num">08</div>
+      <div>
+        <div class="decision-question">What is the "German" visual signal in the ads and landing page?</div>
+        <div class="decision-why">Current ads don't immediately communicate "German learning app" — discussed and unresolved. On a fast-scroll feed, you have 1.5 seconds to communicate what you are. If this isn't solved, ad CTR will be low regardless of budget.</div>
+      </div>
+      <div class="decision-action">
+        <strong>Action needed · Before Month 3 ads</strong>
+        Recommended solution: use "Deutsch" or "German" as a dominant word in the headline. Layer iconic German words (Fernweh, Schadenfreude) visually. Test one ad with 🇩🇪 emoji in the tag vs one without. Let data decide.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">Built with Finally. · GTM Blueprint v1.0 · March 2026</div>
+    <div class="footer-logo">PRÄGEN</div>
+  </div>
+
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
