@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prägen — Social Posts v4</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAFAC8;
+    --pink: #FF2D9B;
+    --black: #111111;
+    --gray: #555;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    padding: 48px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #555;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .attention-note {
+    max-width: 540px;
+    background: #1e1e1e;
+    border-left: 3px solid var(--pink);
+    padding: 10px 14px;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .attention-note strong { color: #999; }
+
+  /* ========================= */
+  /* IG FEED v4                */
+  /* Attention flow:           */
+  /* 1. SCHADENFREUDE (100px)  */
+  /* 2. die · noun · C1 (tags) */
+  /* 3. meaning (18px bold)    */
+  /* 4. hook line (sm, left)   */
+  /* 5. CTA bar                */
+  /* ========================= */
+  .ig-post {
+    width: 540px;
+    height: 540px;
+    background: var(--cream);
+    border: 4px solid var(--black);
+    box-shadow: 8px 8px 0 var(--pink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ig-topbar {
+    background: var(--black);
+    padding: 9px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .ig-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--pink);
+    letter-spacing: 3px;
+  }
+
+  .ig-pill {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background: var(--pink);
+    padding: 3px 9px;
+  }
+
+  /* HERO zone — word dominates */
+  .ig-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 36px 16px;
+  }
+
+  /* Word — the scroll-stopper */
+  .ig-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 104px;
+    line-height: 0.86;
+    color: var(--pink);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  /* Gender + tags — second glance */
+  .ig-word-tags {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+
+  .ig-tag {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border: 2px solid var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--black);
+  }
+
+  .ig-tag.filled {
+    background: var(--black);
+    color: var(--cream);
+  }
+
+  /* Meaning — third read */
+  .ig-meaning {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+
+  /* Hook — fourth, after they're already engaged */
+  .ig-hook {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    line-height: 1.55;
+    border-left: 3px solid var(--pink);
+    padding-left: 12px;
+  }
+
+  .ig-hook strong {
+    color: var(--black);
+    font-weight: 800;
+  }
+
+  /* CTA bar */
+  .ig-bottom {
+    background: var(--pink);
+    border-top: 3px solid var(--black);
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .ig-oneliner {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.35;
+    max-width: 60%;
+  }
+
+  .ig-cta {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: var(--black);
+    padding: 9px 16px;
+    white-space: nowrap;
+  }
+
+  /* ========================= */
+  /* IG STORY v4               */
+  /* Attention flow:           */
+  /* 1. FORGOT IT? (giant)     */
+  /* 2. SCHADENFREUDE          */
+  /* 3. meaning line           */
+  /* 4. CTA                    */
+  /* ========================= */
+  .story-post {
+    width: 304px;
+    height: 540px;
+    background: var(--black);
+    border: 4px solid var(--black);
+    box-shadow: 8px 8px 0 var(--pink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Pink top strip — brand colour before anything */
+  .story-strip {
+    background: var(--pink);
+    padding: 8px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .story-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 3px;
+  }
+
+  .story-flag {
+    font-size: 14px;
+  }
+
+  /* BIG HOOK — must land in < 1.5s */
+  .story-hook {
+    padding: 22px 22px 0;
+    flex-shrink: 0;
+  }
+
+  .story-hook-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 0.9;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+
+  .story-hook-text em {
+    color: var(--pink);
+    font-style: normal;
+  }
+
+  /* Word block */
+  .story-word-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 22px;
+    border-top: 2px solid #222;
+    border-bottom: 2px solid #222;
+    margin: 14px 0;
+    gap: 6px;
+  }
+
+  .story-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 0.88;
+    color: var(--pink);
+    letter-spacing: 0.5px;
+  }
+
+  .story-gender-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .story-gtag {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border: 1.5px solid #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+  }
+
+  .story-gtag.active {
+    border-color: var(--pink);
+    color: var(--pink);
+  }
+
+  .story-meaning {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.35;
+    margin-top: 4px;
+  }
+
+  .story-meaning-sub {
+    font-size: 10px;
+    color: #555;
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* Bottom payoff + CTA */
+  .story-bottom {
+    padding: 0 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .story-payoff {
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .story-payoff strong {
+    color: var(--cream);
+  }
+
+  .story-cta {
+    background: var(--pink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 11px 0;
+    text-align: center;
+  }
+
+  /* ========================= */
+  /* REDDIT                    */
+  /* ========================= */
+  .reddit-post {
+    width: 100%;
+    max-width: 660px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .reddit-bar {
+    background: #f6f7f8;
+    border-bottom: 1px solid #edeff1;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #888;
+  }
+
+  .reddit-bar strong { color: #111; }
+
+  .reddit-content { padding: 16px 20px; }
+
+  .reddit-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .reddit-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #333;
+  }
+
+  .reddit-body p { margin-bottom: 12px; }
+  .reddit-body p:last-child { margin-bottom: 0; }
+
+  .reddit-quote {
+    background: #FAFAC8;
+    border-left: 4px solid #FF2D9B;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 14px;
+    color: #111;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  .reddit-link { color: #FF2D9B; font-weight: 700; text-decoration: none; }
+
+  .reddit-footer {
+    padding: 10px 20px 14px;
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid #edeff1;
+  }
+
+  .reddit-action {
+    font-size: 12px;
+    font-weight: 700;
+    color: #878a8c;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- IG FEED v4 -->
+  <div style="display:flex; flex-direction:column; align-items:center;">
+    <div class="section-label">Instagram Feed · 1080×1080 · v4</div>
+    <div class="attention-note">
+      <strong>Attention flow (1.5s rule):</strong> Eye lands on the biggest pink element first → SCHADENFREUDE stops the scroll → tags confirm it's German → meaning delivers the "aha" → hook lands after they're already engaged. CTA bar is always visible. Five distinct read layers, each optional — even a 1-second view communicates the product.
+    </div>
+    <div class="ig-post">
+      <div class="ig-topbar">
+        <div class="ig-logo">PRÄGEN</div>
+        <div class="ig-pill">🇩🇪 German Vocabulary App</div>
+      </div>
+
+      <div class="ig-hero">
+        <!-- Layer 1: scroll stopper -->
+        <div class="ig-word">Schaden-<br>freude</div>
+
+        <!-- Layer 2: grammar signal — now CORRECT: die -->
+        <div class="ig-word-tags">
+          <div class="ig-tag filled">die</div>
+          <div class="ig-tag">noun</div>
+          <div class="ig-tag">C1</div>
+          <div class="ig-tag">no English equivalent</div>
+        </div>
+
+        <!-- Layer 3: meaning -->
+        <div class="ig-meaning">Joy felt at someone else's misfortune.</div>
+
+        <!-- Layer 4: hook — after they're engaged -->
+        <div class="ig-hook">
+          You've looked this up before. <strong>This time it stays.</strong><br>
+          Every German word — saved, quizzed, remembered.
+        </div>
+      </div>
+
+      <!-- Layer 5: CTA -->
+      <div class="ig-bottom">
+        <div class="ig-oneliner">The only German vocabulary app that takes you from lookup to fluency.</div>
+        <div class="ig-cta">praegen.app →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IG STORY v4 -->
+  <div style="display:flex; flex-direction:column; align-items:center;">
+    <div class="section-label">Instagram Story · 9:16 · v4</div>
+    <div class="attention-note" style="max-width:304px">
+      <strong>Attention flow (1s rule):</strong> Stories get 1–2 seconds before tap-through. Hook "FORGOT IT?" at 58px lands in one glance — 2 words, zero reading required. Word below confirms the context. CTA always visible at bottom. Maximum 4 read layers total.
+    </div>
+    <div class="story-post">
+
+      <!-- Brand strip — always visible -->
+      <div class="story-strip">
+        <div class="story-logo">PRÄGEN</div>
+        <div class="story-flag">🇩🇪</div>
+      </div>
+
+      <!-- Hook — 2 words, giant, immediate -->
+      <div class="story-hook">
+        <div class="story-hook-text">
+          Forgot<br>
+          it <em>again?</em>
+        </div>
+      </div>
+
+      <!-- Word block -->
+      <div class="story-word-block">
+        <div class="story-word">Schaden-<br>freude</div>
+        <div class="story-gender-row">
+          <div class="story-gtag active">die</div>
+          <div class="story-gtag">noun</div>
+          <div class="story-gtag">C1</div>
+        </div>
+        <div class="story-meaning">Joy at someone else's misfortune.</div>
+        <div class="story-meaning-sub">no English equivalent</div>
+      </div>
+
+      <!-- Payoff + CTA -->
+      <div class="story-bottom">
+        <div class="story-payoff">
+          Look it up. Save it. Get quizzed.<br>
+          <strong>This time it sticks.</strong>
+        </div>
+        <div class="story-cta">Try free → praegen.app</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REDDIT v4 -->
+  <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+    <div class="section-label">Reddit Post · r/LearnGerman · v4</div>
+    <div class="reddit-post">
+      <div class="reddit-bar">
+        <strong>r/LearnGerman</strong> · Posted by u/praegen_app · just now
+      </div>
+      <div class="reddit-content">
+        <div class="reddit-title">
+          I looked up "die Schadenfreude" four times in three weeks and kept forgetting it — so I built something to fix that
+        </div>
+        <div class="reddit-body">
+          <p>I'm a PM living in Vienna, learning German. B1, getting there slowly.</p>
+
+          <p>The thing that frustrated me most wasn't the grammar or the cases. It was this: I'd look up a word, feel like I got it, close the tab — and forget it by the next day. Same word. Three weeks later. Again.</p>
+
+          <div class="reddit-quote">
+            Turns out this has a name — the Ebbinghaus Forgetting Curve. Without active recall, you lose 70% of new vocabulary within 24 hours. I wasn't bad at German. I was just missing the recall loop.
+          </div>
+
+          <p>So I built <strong>Prägen</strong>. You look up any German word and get the full picture — meaning, conjugation, gender, forms, preposition usage, real usage examples. You save it to your Wortschatz. It comes back in your quiz. You read real German articles and tap any word for instant translation. Everything connected, nothing lost.</p>
+
+          <p>There's also a tips section with 2,000 words you'll actually need day-to-day in a German-speaking country, including false friends — those cost me a few embarrassing moments at work.</p>
+
+          <p>Free to try: <a class="reddit-link" href="https://praegen.app">praegen.app</a></p>
+
+          <p>Genuinely curious — what's the word you've looked up the most times and still can't hold onto?</p>
+
+          <p style="font-size:12px; color:#aaa;">Built for A2–C1 learners, English ↔ German. Web app now. iOS + Android coming soon.</p>
+        </div>
+      </div>
+      <div class="reddit-footer">
+        <div class="reddit-action">↑ Upvote</div>
+        <div class="reddit-action">💬 Comment</div>
+        <div class="reddit-action">Share</div>
+        <div class="reddit-action">Save</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
